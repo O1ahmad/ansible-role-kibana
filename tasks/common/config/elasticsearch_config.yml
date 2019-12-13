@@ -1,0 +1,24 @@
+---
+- name: Ensure existence of Elasticsearch auxiliary(config, data and logging) directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ elasticsearch_user }}"
+    group: "{{ elasticsearch_user }}"
+  loop:
+    - "{{ config_dir|default(default_config_dir) }}"
+    - "{{ config['path.data']|default(config.path.data)|default(default_data_dir) }}"
+    - "{{ config['path.logs']|default(config.path.logs)|default(default_log_dir) }}"
+  become: true
+
+- name: Copy elasticsearch.yml configuration in place
+  template:
+    src: "{{ elasticsearch_config }}.j2"
+    dest: "{{ config_dir|default(default_config_dir) }}/{{ elasticsearch_config }}"
+    owner: "{{ elasticsearch_user }}"
+    group: "{{ elasticsearch_user }}"
+    mode: 0644
+  vars:
+    conf: "{{ config }}"
+  become: true
+  when: config is defined and config is not none

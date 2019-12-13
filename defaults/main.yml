@@ -1,0 +1,23 @@
+---
+# defaults variable file
+kibana_user: kibana
+
+install_type: archive
+default_install_dir: /opt/kibana
+checksum_format: sha512
+
+archive_url: https://artifacts.elastic.co/downloads/kibana/kibana-7.5.0-linux-x86_64.tar.gz
+archive_checksum: https://artifacts.elastic.co/downloads/kibana/kibana-7.5.0-linux-x86_64.tar.gz.sha512
+
+default_config_dir: "{{ default_install_dir }}/config"
+default_data_dir: "/var/data/kibana"
+default_log_dir: "/var/logs/kibana"
+
+kibana_config: kibana.yml
+config: {}
+
+extra_run_args: []
+
+perform_uninstall: false
+
+custom_unit_properties: {}
