@@ -13,7 +13,7 @@ default_config_dir: "{{ default_install_dir }}/config"
 default_data_dir: "/var/data/kibana"
 default_log_dir: "/var/logs/kibana"
 
-kibana_config: kibana.yml
+kibana_config_file: kibana.yml
 config: {}
 
 extra_run_args: []

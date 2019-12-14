@@ -2,21 +2,21 @@
 - name: Set unit [Service] configuration
   set_fact:
     default_service_unit:
-      ExecStart: "{{ install_dir }}/bin/elasticsearch {{ extra_run_args|join(' ') }}"
-      User: "{{ elasticsearch_user }}"
-      Group: "{{ elasticsearch_user }}"
+      ExecStart: "{{ install_dir }}/bin/kibana {{ extra_run_args|join(' ') }}"
+      User: "{{ kibana_user }}"
+      Group: "{{ kibana_user }}"
       StandardOutput: journal
       StandardError: inherit
 
-- name: Setup elasticsearch systemd unit
+- name: Setup Kibana systemd unit
   include_role:
     name: 0x0i.systemd
   vars:
     unit_config:
-      - name: elasticsearch
+      - name: kibana
         Unit:
-          Description: Elasticsearch
-          Documentation: http://www.elastic.co
+          Description: Kibana
+          Documentation: https://www.elastic.co/products/kibana
           Wants: network-online.target
           After: network-online.target
         Service: "{{ default_service_unit | combine(custom_unit_properties) }}"
@@ -24,8 +24,8 @@
           WantedBy: multi-user.target
   when: install_type == 'archive'
 
-- name: Ensure start of elasticsearch service
+- name: Ensure start of kibana service
   service:
-    name: elasticsearch
+    name: kibana
     state: started
     enabled: "yes"

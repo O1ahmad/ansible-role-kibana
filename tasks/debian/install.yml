@@ -1,5 +1,5 @@
 ---
-- name: Install Elasticsearch debian package
+- name: Install Kibana debian package
   apt:
     deb: "{{ package_tmp.dest }}"
     state: present

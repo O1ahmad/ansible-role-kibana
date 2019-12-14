@@ -1,5 +1,5 @@
 ---
-- name: Install Elasticsearch rpm
+- name: Install Kibana rpm
   yum:
     name: "{{ package_tmp.dest }}"
     state: present

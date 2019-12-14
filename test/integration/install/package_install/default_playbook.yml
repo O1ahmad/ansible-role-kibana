@@ -2,6 +2,6 @@
 - name: Default playbook for testing
   hosts: test-kitchen
   roles:
-    - ansible-role-elasticsearch
+    - ansible-role-kibana
   vars:
     install_type: package
