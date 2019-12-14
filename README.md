@@ -1,7 +1,7 @@
 Ansible Role :microscope: :stars: Kibana
 =========
-[![Galaxy Role](https://img.shields.io/ansible/role/45171.svg)](https://galaxy.ansible.com/0x0I/kibana)
-[![Downloads](https://img.shields.io/ansible/role/d/45171.svg)](https://galaxy.ansible.com/0x0I/kibana)
+[![Galaxy Role](https://img.shields.io/ansible/role/45337.svg)](https://galaxy.ansible.com/0x0I/kibana)
+[![Downloads](https://img.shields.io/ansible/role/d/45337.svg)](https://galaxy.ansible.com/0x0I/kibana)
 [![Build Status](https://travis-ci.org/0x0I/ansible-role-kibana.svg?branch=master)](https://travis-ci.org/0x0I/ansible-role-kibana)
 
 **Table of Contents**
@@ -39,26 +39,26 @@ Variables are available and organized according to the following software & mach
 
 #### Install
 
-`elasticsearch`can be installed using OS package management systems (e.g `apt`, `yum`) or compressed archives (`.tar`, `.zip`) downloaded and extracted from various sources.
+`kibana`can be installed using OS package management systems (e.g `apt`, `yum`) or compressed archives (`.tar`, `.zip`) downloaded and extracted from various sources.
 
 _The following variables can be customized to control various aspects of this installation process, ranging from software version and source location of binaries to the installation directory where they are stored:_
 
 `install_type: <package | archive>` (**default**: archive)
-- **package**: supported by Debian and Redhat distributions, package installation of Elasticsearch pulls the specified package available from the respective package management repositories.
-  - Note that the installation directory is determined by the package management system and currently defaults to `/usr/share` for both distros. Attempts to set and execute a package installation on other Linux distros will result in failure due to lack of support.
-- **archive**: compatible with both **tar and zip** formats, archived installation binaries can be obtained from local and remote compressed archives either from the official [download/releases](https://www.elastic.co/downloads/elasticsearch) site or those generated from development/custom sources.
+- **package**: supported by Debian and Redhat distributions, package installation of Kibana pulls the specified package available from the respective package management repositories.
+  - Note that the installation directory is determined by the package management system and currently defaults to `/usr/share` for both distros.
+- **archive**: compatible with both **tar and zip** formats, archived installation binaries can be obtained from local and remote compressed archives either from the official [download/releases](https://www.elastic.co/downloads/kibana) site or those generated from development/custom sources.
 
-`default_install_dir: </path/to/installation/dir>` (**default**: `/opt/elasticsearch`)
-- path on target host where the `elasticsearch` binaries should be extracted to. *ONLY* relevant when `install_type` is set to **archive**.
+`default_install_dir: </path/to/installation/dir>` (**default**: `/opt/kibana`)
+- path on target host where the `kibana` binaries should be extracted to. *ONLY* relevant when `install_type` is set to **archive**.
 
 `archive_url: <path-or-url-to-archive>` (**default**: see `defaults/main.yml`)
-- address of a compressed **tar or zip** archive containing `elasticsearch` binaries. This method technically supports installation of any available version of `elasticsearch`. Links to official versions can be found [here](https://www.elastic.co/downloads/past-releases#elasticsearch). *ONLY* relevant when `install_type` is set to **archive**
+- address of a compressed **tar or zip** archive containing `kibana` binaries. This method technically supports installation of any available version of `kibana`. Links to official versions can be found [here](https://www.elastic.co/downloads/past-releases#kibana). *ONLY* relevant when `install_type` is set to **archive**
 
 `archive_checksum: <path-or-url-to-checksum>` (**default**: see `defaults/main.yml`)
 - address of a checksum file for verifying the data integrity of the specified archive. While recommended and generally considered a best practice, specifying a checksum is *not required* and can be disabled by providing an empty string (`''`) for its value. *ONLY* relevant when `install_type` is set to **archive**.
 
 `package_url: <path-or-url-to-package>` (**default**: see `defaults/main.yml`)
-- address of a **Debian or RPM** package containing `elasticsearch` source and binaries. Note that the installation layout is determined by the package management systems. Consult Elastic's official documentation for both [RPM](https://www.elastic.co/guide/en/elasticsearch/reference/current/rpm.html) and [Debian](https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html) installation details. *ONLY* relevant when `install_type` is set to **package**
+- address of a **Debian or RPM** package containing `kibana` source and binaries. Note that the installation layout is determined by the package management systems. Consult Elastic's official documentation for both [RPM](https://www.elastic.co/guide/en/kibana/current/rpm.html) and [Debian](https://www.elastic.co/guide/en/kibana/current/deb.html) installation details. *ONLY* relevant when `install_type` is set to **package**
 
 `package_checksum: <path-or-url-to-checksum>` (**default**: see `vars/...`)
 - address of a checksum file for verifying the data integrity of the specified package. While recommended and generally considered a best practice, specifying a checksum is *not required* and can be disabled by providing an empty string (`''`) for its value. *ONLY* relevant when `install_type` is set to **package**.
@@ -144,7 +144,23 @@ While you should rarely need to change Java Virtual Machine (JVM) options; there
 
 #### Launch
 
-...*description of service launch related vars*...
+Running the `kibana` analytics and visualization service along with its API server is accomplished utilizing the [systemd](https://www.freedesktop.org/wiki/Software/systemd/) service management tool for both *package* and *archive* installations. Launched as background processes or daemons subject to the configuration and execution potential provided by the underlying management framework, launch of `elasticsearch` can be set to adhere to system administrative policies right for your environment and organization.
+
+_The following variables can be customized to manage the service's **systemd** service unit definition and execution profile/policy:_
+
+`extra_run_args: <kibana-cli-options>` (**default**: `[]`)
+- list of `elasticsearch` commandline arguments to pass to the binary at runtime for customizing launch. Supporting full expression of `kibana`'s cli, this variable enables the launch to be customized according to the user's specification.
+
+`custom_unit_properties: <hash-of-systemd-service-settings>` (**default**: `[]`)
+- hash of settings used to customize the [Service] unit configuration and execution environment of the Elasticsearch **systemd** service.
+
+```yaml
+custom_unit_properties:
+  Environment: "KIBANA_HOME={{ install_dir }}"
+  LimitNOFILE: infinity
+```
+
+Reference the [systemd.service](http://man7.org/linux/man-pages/man5/systemd.service.5.html) *man* page for a configuration overview and reference.
 
 Dependencies
 ------------
@@ -157,7 +173,7 @@ default example:
 ```
 - hosts: all
   roles:
-  - role: 0xOI.elasticsearch
+  - role: 0xOI.kibana
 ```
 
 License
