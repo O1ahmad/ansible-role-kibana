@@ -1,8 +1,27 @@
 ---
 - name: determine configuration directory
   set_fact:
-    config_dir: "{{ '/etc/elasticsearch' if install_type == 'package' else install_dir + '/config' }}"
+    config_dir: "{{ '/etc/kibana' if install_type == 'package' else default_config_dir }}"
 
-- name: Include designated managed configuration tasks
-  include_tasks: "common/config/{{ item }}.yml"
-  with_items: "{{ managed_configs }}"
+- name: Ensure existence of Kibana auxiliary(config, data and logging) directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ kibana_user }}"
+    group: "{{ kibana_user }}"
+  loop:
+    - "{{ config_dir }}"
+    - "{{ config['path.data']|default(config.path.data)|default(default_data_dir) }}"
+  become: true
+
+- name: Copy kibana.yml configuration in place
+  template:
+    src: "{{ kibana_config_file }}.j2"
+    dest: "{{ config_dir }}/{{ kibana_config_file }}"
+    owner: "{{ kibana_user }}"
+    group: "{{ kibana_user }}"
+    mode: 0644
+  vars:
+    conf: "{{ config }}"
+  become: true
+  when: config is defined and config is not none

@@ -1,13 +1,13 @@
-title "Elasticsearch package installation suite"
+title "Kibana package installation suite"
 
-describe user('elasticsearch') do
+describe user('kibana') do
   it { should exist }
 end
 
-describe group('elasticsearch') do
+describe group('kibana') do
   it { should exist }
 end
 
-describe package('elasticsearch') do
+describe package('kibana') do
   it { should be_installed }
 end

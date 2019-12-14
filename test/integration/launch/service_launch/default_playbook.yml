@@ -2,26 +2,15 @@
 - name: Default playbook for testing
   hosts: test-kitchen
   roles:
-    - ansible-role-elasticsearch
+    - ansible-role-kibana
   vars:
     install_type: archive
-    managed_configs: ['elasticsearch_config', 'jvm_options', 'log4j2_properties']
     config:
-      cluster.name: test-cluster
-      path:
-        data: /mnt/data/elasticsearch
-        logs: /mnt/logs/elasticsearch
-    jvm_options:
-      - comment: set the min and max JVM heap size (to the same value)
-        arguments:
-          - '-Xms2g'
-          - '-Xmx2g'
-    log4j2_properties:
-      - comment: log action execution errors for easier debugging
-        settings:
-          - logger.action.name: org.elasticsearch.action
-            logger.action.level: debug
+      server.name: kibana-test
+      elasticsearch.startupTimeout: 60000
+      logging.verbose: true
+      logging.json: true
     extra_run_args:
       - '--verbose'
     custom_unit_properties:
-      Environment: "ES_HOME={{ install_dir }}"
+      Environment: "KIBANA_HOME={{ install_dir }}"

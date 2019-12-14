@@ -1,4 +1,4 @@
-Ansible Role :microscope: Kibana
+Ansible Role :microscope: :stars: Kibana
 =========
 [![Galaxy Role](https://img.shields.io/ansible/role/45171.svg)](https://galaxy.ansible.com/0x0I/kibana)
 [![Downloads](https://img.shields.io/ansible/role/d/45171.svg)](https://galaxy.ansible.com/0x0I/kibana)
