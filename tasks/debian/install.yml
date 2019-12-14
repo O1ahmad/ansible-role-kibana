@@ -1,0 +1,6 @@
+---
+- name: Install Elasticsearch debian package
+  apt:
+    deb: "{{ package_tmp.dest }}"
+    state: present
+  when: install_type == "package"

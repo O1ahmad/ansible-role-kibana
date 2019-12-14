@@ -1,0 +1,7 @@
+---
+- name: Default playbook for testing
+  hosts: test-kitchen
+  roles:
+    - ansible-role-elasticsearch
+  vars:
+    install_type: archive

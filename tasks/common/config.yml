@@ -1,0 +1,8 @@
+---
+- name: determine configuration directory
+  set_fact:
+    config_dir: "{{ '/etc/elasticsearch' if install_type == 'package' else install_dir + '/config' }}"
+
+- name: Include designated managed configuration tasks
+  include_tasks: "common/config/{{ item }}.yml"
+  with_items: "{{ managed_configs }}"
