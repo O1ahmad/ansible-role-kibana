@@ -1,27 +1,21 @@
-title "Elasticsearch elasticsearch.yml configuration test suite"
+title "Kibana kibana.yml configuration test suite"
 
-describe file('/opt/elasticsearch/config/elasticsearch.yml') do
+describe file('/opt/kibana/config/kibana.yml') do
   it { should exist }
-  its('owner') { should eq 'elasticsearch' }
-  its('group') { should eq 'elasticsearch' }
+  its('owner') { should eq 'kibana' }
+  its('group') { should eq 'kibana' }
   its('mode') { should cmp '0644' }
 
-  its('content') { should match("node.name:") }
+  its('content') { should match("server.name:") }
   its('content') { should match("path.data:") }
-  its('content') { should match("path:") }
-  its('content') { should match("logs:") }
+  its('content') { should match("logging:") }
+  its('content') { should match("verbose:") }
+  its('content') { should match("json:") }
 end
 
-describe directory('/mnt/logs/elasticsearch') do
+describe directory('/mnt/data/kibana') do
   it { should exist }
-  its('owner') { should eq 'elasticsearch' }
-  its('group') { should eq 'elasticsearch' }
-  its('mode') { should cmp '0755' }
-end
-
-describe directory('/mnt/data/elasticsearch') do
-  it { should exist }
-  its('owner') { should eq 'elasticsearch' }
-  its('group') { should eq 'elasticsearch' }
+  its('owner') { should eq 'kibana' }
+  its('group') { should eq 'kibana' }
   its('mode') { should cmp '0755' }
 end
