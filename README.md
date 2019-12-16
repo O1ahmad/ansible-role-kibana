@@ -151,7 +151,7 @@ customize Elasticsearch hosts to connect to:
   - role: 0xOI.kibana
     vars:
       config:
-        elasticsearch.hosts: http://es1.cluster.domain:9200,http://es2.cluster.domain:9200
+        elasticsearch.hosts: ['http://es1.cluster.domain:9200', 'http://es2.cluster.domain:9200']
 ```
 
 modify default logging (STDOUT) behaviour by writing to file on disk:
