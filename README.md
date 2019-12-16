@@ -113,8 +113,7 @@ _The following variables can be customized to manage the service's **systemd** s
 
 ```yaml
 custom_unit_properties:
-  Environment: "KIBANA_HOME={{ install_dir }}"
-  LimitNOFILE: infinity
+  Environment: "NODE_OPTIONS='--max-old-space-size=2048' bin/kibana"
 ```
 
 Reference the [systemd.service](http://man7.org/linux/man-pages/man5/systemd.service.5.html) *man* page for a configuration overview and reference.
