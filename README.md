@@ -177,6 +177,16 @@ adjust settings for easier debugging/troubleshooting:
       extra_run_args: ['--verbose']
 ```
 
+enable strict browser checking for support of rudimentary CSP (content security policy) rules:
+```
+- hosts: all
+  roles:
+  - role: 0xOI.kibana
+    vars:
+      config:
+        csp.strict: true
+```
+
 License
 -------
 
