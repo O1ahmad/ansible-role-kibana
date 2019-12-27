@@ -1,3 +1,5 @@
+<p><img src="https://seeklogo.com/images/K/kibana-logo-3CB40921E7-seeklogo.com.png" alt="kibana logo" title="kibana" align="right" height="60" /></p>
+
 Ansible Role :microscope: :stars: Kibana
 =========
 [![Galaxy Role](https://img.shields.io/ansible/role/45337.svg)](https://galaxy.ansible.com/0x0I/kibana)
