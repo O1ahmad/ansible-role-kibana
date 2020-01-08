@@ -2,18 +2,21 @@
 #######  Authentication setup #######
 
 - name: Ensure Kibana group exists
+  become: true
   group:
     name: "{{ kibana_user }}"
     state: present
-  become: true
+    system: true
 
 - name: Create Kibana user
+  become: true
   user:
     comment: Kibana service account
     name: "{{ kibana_user }}"
     group: "{{ kibana_user }}"
-    create_home: "no"
-  become: true
+    shell: "/sbin/nologin"
+    system: true
+    create_home: false
 
 #######  Source installation #######
 
