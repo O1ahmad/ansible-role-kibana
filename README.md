@@ -45,6 +45,9 @@ Variables are available and organized according to the following software & mach
 
 _The following variables can be customized to control various aspects of this installation process, ranging from software version and source location of binaries to the installation directory where they are stored:_
 
+`kibana_user: <service-user-name>` (**default**: *kibana*)
+- dedicated service user and group used by `kibana` for privilege separation (see [here](https://www.beyondtrust.com/blog/entry/how-separation-privilege-improves-security) for details)
+
 `install_type: <package | archive>` (**default**: archive)
 - **package**: supported by Debian and Redhat distributions, package installation of Kibana pulls the specified package available from the respective package management repositories.
   - Note that the installation directory is determined by the package management system and currently defaults to `/usr/share` for both distros.
