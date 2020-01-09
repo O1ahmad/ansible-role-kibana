@@ -1,0 +1,34 @@
+---
+- name: Download Kibana archive ({{ archive_url }})
+  get_url:
+    url: "{{ archive_url }}"
+    dest: "/tmp/{{ archive_url | urlsplit('path') | basename }}"
+    checksum: "{{ checksum_format }}:{{ archive_checksum }}"
+    owner: "{{ kibana_user }}"
+    group: "{{ kibana_user }}"
+    mode: '0775'
+  register: archive_tmp
+  become: true
+  when: install_type == "archive"
+
+- name: Extract Kibana archive
+  unarchive:
+    src: "{{ archive_tmp.dest }}"
+    dest: "{{ install_dir }}"
+    creates: "{{ install_dir }}/bin"
+    owner: "{{ kibana_user }}"
+    group: "{{ kibana_user }}"
+    mode: '0775'
+    extra_opts:
+      - --strip-components
+      - '1'
+    remote_src: true
+  become: true
+  when: install_type == "archive"
+
+- name: Add installation dir to system-wide $PATH
+  copy:
+    dest: /etc/profile.d/custom-path.sh
+    content: 'PATH=$PATH:{{ install_dir }}/bin'
+  become: true
+  when: install_type == "archive"

@@ -1,0 +1,19 @@
+---
+- name: Determine installation directory
+  set_fact:
+    install_dir: '/usr/share/kibana'
+  when: install_type == "package"
+
+- name: Determine configuration directory
+  set_fact:
+    config_dir: '/etc/kibana'
+  when: install_type == "package"
+
+- name: Set Kibana unit default [Service] configuration
+  set_fact:
+    default_service_unit:
+      ExecStart: "{{ install_dir }}/bin/kibana {{ extra_run_args|join(' ') }}"
+      User: "{{ kibana_user }}"
+      Group: "{{ kibana_user }}"
+      StandardOutput: journal
+      StandardError: inherit

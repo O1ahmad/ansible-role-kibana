@@ -1,9 +1,6 @@
 ---
-- name: determine configuration directory
-  set_fact:
-    config_dir: "{{ '/etc/kibana' if install_type == 'package' else default_config_dir }}"
-
-- name: Ensure existence of Kibana auxiliary(config, data and logging) directories
+- name: Create Kibana config directory
+  become: true
   file:
     path: "{{ item }}"
     state: directory
@@ -11,10 +8,9 @@
     group: "{{ kibana_user }}"
   loop:
     - "{{ config_dir }}"
-    - "{{ config['path.data']|default(config.path.data)|default(default_data_dir) }}"
-  become: true
 
 - name: Copy kibana.yml configuration in place
+  become: true
   template:
     src: "{{ kibana_config_file }}.j2"
     dest: "{{ config_dir }}/{{ kibana_config_file }}"
@@ -23,5 +19,26 @@
     mode: 0644
   vars:
     conf: "{{ config }}"
+  when: config is defined and config.keys()|length > 0
+
+- name: Create Kibana data directory
   become: true
-  when: config is defined and config is not none
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ kibana_user }}"
+    group: "{{ kibana_user }}"
+  loop:
+    - "{{ config['path.data']|default(config.path.data) }}"
+  when: config['path.data'] is defined or config.path.data is defined
+
+- name: Create Kibana log directory
+  become: true
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ kibana_user }}"
+    group: "{{ kibana_user }}"
+  loop:
+    - "{{ config['logging.dest']|default(config.logging.dest) }}"
+  when: config['logging.dest'] is defined or config.logging.dest is defined

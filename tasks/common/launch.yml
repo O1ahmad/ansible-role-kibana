@@ -1,13 +1,4 @@
 ---
-- name: Set unit [Service] configuration
-  set_fact:
-    default_service_unit:
-      ExecStart: "{{ install_dir }}/bin/kibana {{ extra_run_args|join(' ') }}"
-      User: "{{ kibana_user }}"
-      Group: "{{ kibana_user }}"
-      StandardOutput: journal
-      StandardError: inherit
-
 - name: Setup Kibana systemd unit
   include_role:
     name: 0x0i.systemd
