@@ -53,7 +53,7 @@ _The following variables can be customized to control various aspects of this in
   - Note that the installation directory is determined by the package management system and currently defaults to `/usr/share` for both distros.
 - **archive**: compatible with both **tar and zip** formats, archived installation binaries can be obtained from local and remote compressed archives either from the official [download/releases](https://www.elastic.co/downloads/kibana) site or those generated from development/custom sources.
 
-`default_install_dir: </path/to/installation/dir>` (**default**: `/opt/kibana`)
+`install_dir: </path/to/installation/dir>` (**default**: `/opt/kibana`)
 - path on target host where the `kibana` binaries should be extracted to. *ONLY* relevant when `install_type` is set to **archive**.
 
 `archive_url: <path-or-url-to-archive>` (**default**: see `defaults/main.yml`)
@@ -79,7 +79,7 @@ For additional details, reference Elastic's official Kibana [configuration](http
 
 _The following variables can be customized to manage the location and content of this configuration file:_
 
-`default_config_dir: </path/to/configuration/dir>` (**default**: `/opt/kibana/config`)
+`config_dir: </path/to/configuration/dir>` (**default**: `/opt/kibana/config`)
 - path on target host where the aforementioned configuration file should be stored
 
 `config: <hash-of-kibana-settings>` **default**: {}
