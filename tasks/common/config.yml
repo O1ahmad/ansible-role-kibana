@@ -12,8 +12,8 @@
 - name: Copy kibana.yml configuration in place
   become: true
   template:
-    src: "{{ kibana_config_file }}.j2"
-    dest: "{{ config_dir }}/{{ kibana_config_file }}"
+    src: "{{ _kibana_config_file }}.j2"
+    dest: "{{ config_dir }}/{{ _kibana_config_file }}"
     owner: "{{ kibana_user }}"
     group: "{{ kibana_user }}"
     mode: 0644
