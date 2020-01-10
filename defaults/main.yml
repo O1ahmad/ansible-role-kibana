@@ -1,5 +1,4 @@
 ---
-# defaults variable file
 kibana_user: kibana
 
 install_type: archive
@@ -11,7 +10,7 @@ archive_checksum: https://artifacts.elastic.co/downloads/kibana/kibana-7.5.0-lin
 
 config_dir: "{{ install_dir }}/config"
 
-kibana_config_file: kibana.yml
+_kibana_config_file: kibana.yml
 config: {}
 
 extra_run_args: []

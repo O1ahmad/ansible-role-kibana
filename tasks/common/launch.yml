@@ -10,7 +10,7 @@
           Documentation: https://www.elastic.co/products/kibana
           Wants: network-online.target
           After: network-online.target
-        Service: "{{ default_service_unit | combine(custom_unit_properties) }}"
+        Service: "{{ _default_service_unit | combine(custom_unit_properties) }}"
         Install:
           WantedBy: multi-user.target
   when: install_type == 'archive'
