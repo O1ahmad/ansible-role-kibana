@@ -10,15 +10,24 @@
   register: package_tmp
   become: true
   when: install_type == "package"
+  tags:
+    - install
+    - package
 
 - name: Install Kibana rpm
   yum:
     name: "{{ package_tmp.dest }}"
     state: present
   when: install_type == "package" and ansible_os_family|lower == "redhat"
+  tags:
+    - install
+    - package
 
 - name: Install Kibana debian package
   apt:
     deb: "{{ package_tmp.dest }}"
     state: present
   when: install_type == "package" and ansible_os_family|lower == "debian"
+  tags:
+    - install
+    - package

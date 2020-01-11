@@ -14,9 +14,13 @@
         Install:
           WantedBy: multi-user.target
   when: install_type == 'archive'
+  tags:
+    - launch
 
 - name: Ensure start of kibana service
   service:
     name: kibana
     state: started
     enabled: "yes"
+  tags:
+    - launch
