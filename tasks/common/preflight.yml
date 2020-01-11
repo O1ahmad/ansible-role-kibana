@@ -3,11 +3,15 @@
   set_fact:
     install_dir: '/usr/share/kibana'
   when: install_type == "package"
+  tags:
+    - preflight
 
 - name: Determine configuration directory
   set_fact:
     config_dir: '/etc/kibana'
   when: install_type == "package"
+  tags:
+    - preflight
 
 - name: Set Kibana unit default [Service] configuration
   set_fact:
@@ -17,3 +21,5 @@
       Group: "{{ kibana_user }}"
       StandardOutput: journal
       StandardError: inherit
+  tags:
+    - preflight

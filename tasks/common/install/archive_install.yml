@@ -10,6 +10,9 @@
   register: archive_tmp
   become: true
   when: install_type == "archive"
+  tags:
+    - install
+    - archive
 
 - name: Extract Kibana archive
   unarchive:
@@ -25,6 +28,9 @@
     remote_src: true
   become: true
   when: install_type == "archive"
+  tags:
+    - install
+    - archive
 
 - name: Add installation dir to system-wide $PATH
   copy:
@@ -32,3 +38,6 @@
     content: 'PATH=$PATH:{{ install_dir }}/bin'
   become: true
   when: install_type == "archive"
+  tags:
+    - install
+    - archive
