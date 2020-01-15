@@ -107,7 +107,7 @@ Running the `kibana` analytics and visualization service along with its API serv
 _The following variables can be customized to manage the service's **systemd** service unit definition and execution profile/policy:_
 
 `extra_run_args: <kibana-cli-options>` (**default**: `[]`)
-- list of `elasticsearch` commandline arguments to pass to the binary at runtime for customizing launch. Supporting full expression of `kibana`'s cli, this variable enables the launch to be customized according to the user's specification.
+- list of `elasticsearch` commandline arguments to pass to the binary at runtime for customizing launch. Supporting full expression of `kibana`'s [cli](https://gist.github.com/0x0I/098fb74af91f58d917fb8b5241c4a03f), this variable enables the launch to be customized according to the user's specification.
 
 `custom_unit_properties: <hash-of-systemd-service-settings>` (**default**: `[]`)
 - hash of settings used to customize the [Service] unit configuration and execution environment of the Elasticsearch **systemd** service.
