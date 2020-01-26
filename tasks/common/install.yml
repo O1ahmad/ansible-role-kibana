@@ -22,12 +22,12 @@
 
 - name: Create installation directory
   become: true
+  when: install_type == "archive"
   file:
     path: "{{ install_dir }}"
     state: directory
     owner: "{{ kibana_user }}"
     group: "{{ kibana_user }}"
-  when: install_type == "archive"
   tags:
     - install
 
