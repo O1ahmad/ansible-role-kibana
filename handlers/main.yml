@@ -7,6 +7,7 @@
   listen: Restart service
 
 - name: Stop Kibana systemd service
+  become: true
   service:
     name: kibana
     state: stopped
@@ -28,10 +29,10 @@
   listen: Uninstall service
 
 - name: Remove Kibana config dir
+  become: true
   file:
     path: "{{ config_dir }}"
     state: absent
-  become: true
   listen: Uninstall service
 
 - name: Remove Kibana data dir
@@ -51,6 +52,7 @@
   listen: Uninstall service
 
 - name: Remove Kibana user
+  become: true
   user:
     name: "{{ kibana_user }}"
     state: absent
@@ -58,6 +60,7 @@
   listen: Uninstall service
 
 - name: Remove Kibana group
+  become: true
   group:
     name: "{{ kibana_user }}"
     state: absent

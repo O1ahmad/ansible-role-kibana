@@ -35,6 +35,7 @@
     - preflight
 
 - name: Check for uninstall signal
+  when: perform_uninstall
   block:
     - name: Broadcast uninstall signal
       command: /bin/true
@@ -42,5 +43,3 @@
 
     - name: End play following uninstallation
       meta: end_play
-  when: perform_uninstall
-  ignore_errors: true
