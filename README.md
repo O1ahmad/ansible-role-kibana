@@ -5,6 +5,7 @@ Ansible Role :microscope: :stars: Kibana
 [![Galaxy Role](https://img.shields.io/ansible/role/45337.svg)](https://galaxy.ansible.com/0x0I/kibana)
 [![Downloads](https://img.shields.io/ansible/role/d/45337.svg)](https://galaxy.ansible.com/0x0I/kibana)
 [![Build Status](https://travis-ci.org/0x0I/ansible-role-kibana.svg?branch=master)](https://travis-ci.org/0x0I/ansible-role-kibana)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **Table of Contents**
   - [Supported Platforms](#supported-platforms)
@@ -199,7 +200,7 @@ enable strict browser checking for support of rudimentary CSP (content security 
 License
 -------
 
-Apache, BSD, MIT
+MIT
 
 Author Information
 ------------------
