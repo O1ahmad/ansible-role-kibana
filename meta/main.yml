@@ -1,11 +1,10 @@
 ---
-# role metadata file
 galaxy_info:
   author: Ahmad Wilson
   role_name: kibana
   description: Kibana, an analytics and visualization platform designed to operate with Elasticsearch
   company: "O1.IO"
-  license: license (Apache, BSD, MIT)
+  license: license (MIT)
   min_ansible_version: 2.6
   platforms:
     - name: EL
