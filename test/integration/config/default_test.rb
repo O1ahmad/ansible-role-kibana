@@ -1,4 +1,4 @@
-title "Kibana kibana.yml configuration test suite"
+title "Kibana configuration integration tests"
 
 describe file('/opt/kibana/config/kibana.yml') do
   it { should exist }
