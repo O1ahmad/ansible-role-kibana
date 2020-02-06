@@ -1,7 +1,7 @@
 ---
-- name: Default playbook for testing
+- name: Kibana package installation integration test playbook
   hosts: test-kitchen
   roles:
-    - ansible-role-kibana
-  vars:
-    install_type: package
+    - role: ansible-role-kibana
+      vars:
+        install_type: package

@@ -1,4 +1,4 @@
-title "Kibana package installation suite"
+title "Kibana package installation integration tests"
 
 describe user('kibana') do
   it { should exist }

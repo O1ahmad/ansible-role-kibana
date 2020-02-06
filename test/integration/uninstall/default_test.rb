@@ -1,4 +1,4 @@
-title "Kibana service uninstallation test suite"
+title "Kibana service uninstallation integration tests"
 
 describe file('/etc/systemd/system/kibana.service') do
   it { should_not exist }

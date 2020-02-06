@@ -1,4 +1,4 @@
-title "Kibana service launch test suite"
+title "Kibana service launch integration tests"
 
 describe file('/etc/systemd/system/kibana.service') do
   it { should exist }

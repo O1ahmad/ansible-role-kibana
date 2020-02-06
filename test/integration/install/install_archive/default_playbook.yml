@@ -1,7 +1,7 @@
 ---
-- name: Default playbook for testing
+- name: Kibana archive installation integration test playbook
   hosts: test-kitchen
   roles:
-    - ansible-role-kibana
-  vars:
-    install_type: archive
+    - role: ansible-role-kibana
+      vars:
+        install_type: archive

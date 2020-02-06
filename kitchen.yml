@@ -1,5 +1,4 @@
 ---
-# kitchen configuration for CI testing
 driver:
   name: docker
 
@@ -26,7 +25,6 @@ provisioner:
   name: ansible_playbook
   require_chef_for_busser: false
   require_ruby_for_busser: false
-  ansible_verbosity: 2
   ansible_verbose: true
   ansible_cfg_path: test/ansible.cfg
   requirements_path: test/requirements-test.yml
@@ -97,12 +95,14 @@ suites:
   - name: install_archive
     provisioner:
       playbook: test/integration/install/install_archive/default_playbook.yml
+      ansible_extra_flags: '--skip-tags=config,launch'
     verifier:
       inspec_tests:
         - path: test/integration/install/install_archive
   - name: install_package
     provisioner:
       playbook: test/integration/install/install_package/default_playbook.yml
+      ansible_extra_flags: '--skip-tags=config,launch'
     verifier:
       inspec_tests:
         - path: test/integration/install/install_package
