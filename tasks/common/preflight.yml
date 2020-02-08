@@ -39,7 +39,13 @@
   block:
     - name: Broadcast uninstall signal
       command: /bin/true
-      notify: Uninstall service
-
+      notify:
+        - Uninstall service
+  rescue:
+    - name: Ensure flush of handlers
+      meta: flush_handlers
+  always:
     - name: End play following uninstallation
       meta: end_play
+  tags:
+    - preflight
