@@ -5,6 +5,7 @@
     name: kibana
     state: restarted
   listen: Restart service
+  ignore_errors: true
 
 - name: Stop Kibana systemd service
   become: true
