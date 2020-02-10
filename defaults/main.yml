@@ -9,6 +9,7 @@ archive_url: https://artifacts.elastic.co/downloads/kibana/kibana-7.5.0-linux-x8
 archive_checksum: https://artifacts.elastic.co/downloads/kibana/kibana-7.5.0-linux-x86_64.tar.gz.sha512
 
 config_dir: "{{ install_dir }}/config"
+data_dir: /var/data/kibana
 
 _kibana_config_file: kibana.yml
 config: {}

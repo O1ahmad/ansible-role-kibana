@@ -14,6 +14,7 @@
     state: stopped
     enabled: false
   listen: Uninstall service
+  ignore_errors: true
 
 - name: Remove Kibana systemd service file
   become: true
@@ -38,18 +39,18 @@
 
 - name: Remove Kibana data dir
   become: true
+  when: (config.path is defined and config.path.data is defined) or config['path.data'] is defined
   file:
     path: "{{ config.path.data|default(config['path.data']) }}"
     state: absent
-  when: config.path.data is defined or config['path.data'] is defined
   listen: Uninstall service
 
 - name: Remove Kibana logs dir
   become: true
+  when: (config.logging is defined and config.logging.dest is defined) or config['logging.dest'] is defined
   file:
     path: "{{ config.logging.dest|default(config['logging.dest']) }}"
     state: absent
-  when: config.logging.dest is defined or config['logging.dest'] is defined
   listen: Uninstall service
 
 - name: Remove Kibana user
