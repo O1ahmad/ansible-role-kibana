@@ -23,6 +23,20 @@
   tags:
     - preflight
 
+- name: Determine logs directory
+  when: config.logging is defined or config['logging.dest'] is defined
+  set_fact:
+    logs_dir: "{{ config['logging.dest']|default(config.logging.dest)|default(logs_dir) }}"
+  tags:
+    - preflight
+
+- name: Determine data directory
+  when: config['path.data'] is defined or config.path is defined
+  set_fact:
+    data_dir: "{{ config['path.data']|default(config.path.data)|default(data_dir) }}"
+  tags:
+    - preflight
+
 - name: Set Kibana unit default [Service] configuration
   set_fact:
     _default_service_unit:
@@ -41,10 +55,9 @@
       command: /bin/true
       notify:
         - Uninstall service
-  rescue:
+  always:
     - name: Ensure flush of handlers
       meta: flush_handlers
-  always:
     - name: End play following uninstallation
       meta: end_play
   tags:

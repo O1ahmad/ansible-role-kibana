@@ -5,7 +5,7 @@
   get_url:
     url: "{{ archive_url }}"
     dest: "/tmp/{{ archive_url | urlsplit('path') | basename }}"
-    checksum: "{{ checksum_format }}:{{ archive_checksum }}"
+    checksum: "{{ (archive_checksum|length > 0) | ternary(checksum_format+':'+archive_checksum, '') }}"
     owner: "{{ kibana_user }}"
     group: "{{ kibana_user }}"
     mode: '0775'
@@ -28,16 +28,6 @@
       - --strip-components
       - '1'
     remote_src: true
-  tags:
-    - install
-    - archive
-
-- name: Add installation dir to system-wide $PATH
-  become: true
-  when: install_type == "archive"
-  copy:
-    dest: /etc/profile.d/custom-path.sh
-    content: 'PATH=$PATH:{{ install_dir }}/bin'
   tags:
     - install
     - archive

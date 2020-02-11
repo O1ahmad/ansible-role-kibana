@@ -1,33 +1,35 @@
 ---
 - name: Download kibana package ({{ package_url }})
+  become: true
+  when: install_type == "package"
   get_url:
     url: "{{ package_url }}"
     dest: "/tmp/{{ package_url | urlsplit('path') | basename }}"
-    checksum: "{{ checksum_format }}:{{ package_checksum }}"
+    checksum: "{{ (package_checksum|length > 0) | ternary(checksum_format+':'+package_checksum, '') }}"
     owner: "{{ kibana_user }}"
     group: "{{ kibana_user }}"
     mode: '0775'
   register: package_tmp
-  become: true
-  when: install_type == "package"
   tags:
     - install
     - package
 
 - name: Install Kibana rpm
+  become: true
+  when: install_type == "package" and ansible_os_family|lower == "redhat"
   yum:
     name: "{{ package_tmp.dest }}"
     state: present
-  when: install_type == "package" and ansible_os_family|lower == "redhat"
   tags:
     - install
     - package
 
 - name: Install Kibana debian package
+  become: true
+  when: install_type == "package" and ansible_os_family|lower == "debian"
   apt:
     deb: "{{ package_tmp.dest }}"
     state: present
-  when: install_type == "package" and ansible_os_family|lower == "debian"
   tags:
     - install
     - package
