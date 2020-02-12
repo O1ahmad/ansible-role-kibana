@@ -141,14 +141,14 @@ default example:
 ```
 - hosts: all
   roles:
-  - role: 0xOI.kibana
+  - role: 0x0I.kibana
 ```
 
 install specific archive version:
 ```
 - hosts: all
   roles:
-  - role: 0xOI.kibana
+  - role: 0x0I.kibana
     vars:
       archive_url: https://download.elastic.co/kibana/kibana/kibana-3.0.0.tar.gz
       archive_checksum: https://download.elastic.co/kibana/kibana/kibana-3.0.0.tar.gz.sha1.txt
@@ -159,7 +159,7 @@ customize Elasticsearch hosts to connect to:
 ```
 - hosts: all
   roles:
-  - role: 0xOI.kibana
+  - role: 0x0I.kibana
     vars:
       config:
         elasticsearch.hosts: ['http://es1.cluster.domain:9200', 'http://es2.cluster.domain:9200']
@@ -169,7 +169,7 @@ modify default logging (STDOUT) behaviour by writing to file on disk:
 ```
 - hosts: all
   roles:
-  - role: 0xOI.kibana
+  - role: 0x0I.kibana
     vars:
       config:
         logging.dest: /var/log/kibana/kibana.log
@@ -179,7 +179,7 @@ adjust settings for easier debugging/troubleshooting:
 ```
 - hosts: all
   roles:
-  - role: 0xOI.kibana
+  - role: 0x0I.kibana
     vars:
       config:
         logging.verbose: true
@@ -192,7 +192,7 @@ enable strict browser checking for support of rudimentary CSP (content security 
 ```
 - hosts: all
   roles:
-  - role: 0xOI.kibana
+  - role: 0x0I.kibana
     vars:
       config:
         csp.strict: true
