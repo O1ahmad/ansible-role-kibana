@@ -3,9 +3,10 @@
 Ansible Role :microscope: :stars: Kibana
 =========
 [![Galaxy Role](https://img.shields.io/ansible/role/45337.svg)](https://galaxy.ansible.com/0x0I/kibana)
-[![Downloads](https://img.shields.io/ansible/role/d/45337.svg)](https://galaxy.ansible.com/0x0I/kibana)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/0x0I/ansible-role-kibana?color=yellow)
+[![Downloads](https://img.shields.io/ansible/role/d/45337.svg?color=lightgrey)](https://galaxy.ansible.com/0x0I/kibana)
 [![Build Status](https://travis-ci.org/0x0I/ansible-role-kibana.svg?branch=master)](https://travis-ci.org/0x0I/ansible-role-kibana)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
 **Table of Contents**
   - [Supported Platforms](#supported-platforms)
@@ -57,19 +58,19 @@ _The following variables can be customized to control various aspects of this in
 - **archive**: compatible with both **tar and zip** formats, archived installation binaries can be obtained from local and remote compressed archives either from the official [download/releases](https://www.elastic.co/downloads/kibana) site or those generated from development/custom sources.
 
 `install_dir: </path/to/installation/dir>` (**default**: `/opt/kibana`)
-- path on target host where the `kibana` binaries should be extracted to. *ONLY* relevant when `install_type` is set to **archive**.
+- path on target host where the `kibana` binaries should be extracted to.
 
 `archive_url: <path-or-url-to-archive>` (**default**: see `defaults/main.yml`)
-- address of a compressed **tar or zip** archive containing `kibana` binaries. This method technically supports installation of any available version of `kibana`. Links to official versions can be found [here](https://www.elastic.co/downloads/past-releases#kibana). *ONLY* relevant when `install_type` is set to **archive**
+- address of a compressed **tar or zip** archive containing `kibana` binaries. This method technically supports installation of any available version of `kibana`. Links to official versions can be found [here](https://www.elastic.co/downloads/past-releases#kibana).
 
 `archive_checksum: <path-or-url-to-checksum>` (**default**: see `defaults/main.yml`)
-- address of a checksum file for verifying the data integrity of the specified archive. While recommended and generally considered a best practice, specifying a checksum is *not required* and can be disabled by providing an empty string (`''`) for its value. *ONLY* relevant when `install_type` is set to **archive**.
+- address of a checksum file for verifying the data integrity of the specified archive. While recommended and generally considered a best practice, specifying a checksum is *not required* and can be disabled by providing an empty string (`''`) for its value.
 
 `package_url: <path-or-url-to-package>` (**default**: see `defaults/main.yml`)
-- address of a **Debian or RPM** package containing `kibana` source and binaries. Note that the installation layout is determined by the package management systems. Consult Elastic's official documentation for both [RPM](https://www.elastic.co/guide/en/kibana/current/rpm.html) and [Debian](https://www.elastic.co/guide/en/kibana/current/deb.html) installation details. *ONLY* relevant when `install_type` is set to **package**
+- address of a **Debian or RPM** package containing `kibana` source and binaries. Note that the installation layout is determined by the package management systems. Consult Elastic's official documentation for both [RPM](https://www.elastic.co/guide/en/kibana/current/rpm.html) and [Debian](https://www.elastic.co/guide/en/kibana/current/deb.html) installation details.
 
 `package_checksum: <path-or-url-to-checksum>` (**default**: see `vars/...`)
-- address of a checksum file for verifying the data integrity of the specified package. While recommended and generally considered a best practice, specifying a checksum is *not required* and can be disabled by providing an empty string (`''`) for its value. *ONLY* relevant when `install_type` is set to **package**.
+- address of a checksum file for verifying the data integrity of the specified package. While recommended and generally considered a best practice, specifying a checksum is *not required* and can be disabled by providing an empty string (`''`) for its value.
 
 `checksum_format: <string>` (**default**: see `sha512`)
 - hash algorithm used for file verification associated with the specified archive or package checksum. Reference [here](https://en.wikipedia.org/wiki/Cryptographic_hash_function) for more information about checksums/cryptographic hashes.
@@ -87,7 +88,7 @@ _The following variables can be customized to manage the location and content of
 
 `config: <hash-of-kibana-settings>` **default**: {}
 
-- Set of Kibana configuration key-value pairs which determine the behaviour of the associated server instance. These settings are generally node-specific (such as server instance name and persistent data paths), or are required by a node to be able to join a cluster. Any configuration setting/value key-pair supported by `kibana` should be expressible within the hash and properly rendered within the associated YAML config.
+- Set of Kibana configuration key-value pairs which determine the behaviour of the associated server instance. These settings are generally node-specific (such as server instance name and persistent data paths). Any configuration setting/value key-pair supported by `kibana` should be expressible within the hash and properly rendered within the associated YAML config.
 
 Values can be expressed in typical _yaml/ansible_ form (e.g. Strings, numbers and true/false values should be written as is and without quotes).
 
@@ -108,10 +109,10 @@ Running the `kibana` analytics and visualization service along with its API serv
 _The following variables can be customized to manage the service's **systemd** service unit definition and execution profile/policy:_
 
 `extra_run_args: <kibana-cli-options>` (**default**: `[]`)
-- list of `elasticsearch` commandline arguments to pass to the binary at runtime for customizing launch. Supporting full expression of `kibana`'s [cli](https://gist.github.com/0x0I/098fb74af91f58d917fb8b5241c4a03f), this variable enables the launch to be customized according to the user's specification.
+- list of `kibana` commandline arguments to pass to the binary at runtime for customizing launch. Supporting full expression of `kibana`'s [cli](https://gist.github.com/0x0I/098fb74af91f58d917fb8b5241c4a03f), this variable enables the launch to be customized according to the user's specification.
 
 `custom_unit_properties: <hash-of-systemd-service-settings>` (**default**: `[]`)
-- hash of settings used to customize the [Service] unit configuration and execution environment of the Elasticsearch **systemd** service.
+- hash of settings used to customize the [Service] unit configuration and execution environment of the Kibana **systemd** service.
 
 ```yaml
 custom_unit_properties:
