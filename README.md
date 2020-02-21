@@ -1,3 +1,4 @@
+<p><img src="https://code.benco.io/icon-collection/logos/ansible.svg" alt="ansible logo" title="ansible" align="left" height="60" /></p>
 <p><img src="https://seeklogo.com/images/K/kibana-logo-3CB40921E7-seeklogo.com.png" alt="kibana logo" title="kibana" align="right" height="60" /></p>
 
 Ansible Role :microscope: :stars: Kibana
