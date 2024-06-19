@@ -3,10 +3,8 @@
 
 Ansible Role :microscope: :stars: Kibana
 =========
-[![Galaxy Role](https://img.shields.io/ansible/role/45337.svg)](https://galaxy.ansible.com/0x0I/kibana)
+[![Galaxy Role](https://img.shields.io/ansible/role/d/0x0i/kibana)](https://galaxy.ansible.com/0x0I/kibana)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/0x0I/ansible-role-kibana?color=yellow)
-[![Downloads](https://img.shields.io/ansible/role/d/45337.svg?color=lightgrey)](https://galaxy.ansible.com/0x0I/kibana)
-[![Build Status](https://travis-ci.org/0x0I/ansible-role-kibana.svg?branch=master)](https://travis-ci.org/0x0I/ansible-role-kibana)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blueviolet.svg)](https://opensource.org/licenses/MIT)
 
 **Table of Contents**
